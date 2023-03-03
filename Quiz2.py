@@ -21,10 +21,13 @@ def generatePhoneNumber():
     T.draw(win2)
     listsnum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+
     while True:
 
         num = E1.getText()
         num1 = list(num)
+        
+
 
 
 
@@ -33,9 +36,12 @@ def generatePhoneNumber():
         for i in range(7):
         
             num1.append(random.choice(listsnum))
-                
-                
         T.setText(num1)
+        if len(num1) == 10 :
+            break
+                
+                
+
 
 
     
