@@ -8,7 +8,7 @@ def main():
     T.draw(win)
     T.setText("Information")
     T.setFill("LavenderBlush4")
-
+    #First Window Design
     Q = QuitButton(win, Point(300, 250), Point(380, 270))
     B1 = Button(win, Point(300, 180), Point(380, 200), "dodger blue", "Confirm Data")
     B2 = Button(win, Point(300, 215), Point(380, 235), "dodger blue", "Create Graph")
@@ -18,13 +18,6 @@ def main():
     T1.draw(win)
     T1.setText("Opponent Name:")
     T1.setFill("LavenderBlush4")
-    
-
-
-    E1 = Entry(Point(200.5, 40), 10)
-    E1.draw(win)
-    E1.setFill("grey18")
-    E1.setTextColor("White")
 
     T2 = Text(Point(50, 100), "")
     T2.draw(win)
@@ -99,11 +92,17 @@ def main():
     T10 = Text(Point(150, 320), "")
     T10.draw(win)
 
+    E1 = Entry(Point(200.5, 40), 10)
+    E1.draw(win)
+    E1.setFill("grey18")
+    E1.setTextColor("White")
+
     while True:
         m = win.getMouse()
+        #Button Clicked
         if B1.isClicked(m):
             name = E1.getText()
-
+        
             text1 = E2.getText()
             num1 = int(text1)
             text2 = E3.getText()
@@ -120,15 +119,16 @@ def main():
             HS = num1/num2
             S = num3/num4
             LS = num5/num6
-            T10.setText("The Success Rate of High Serve: " + str(round(HS, 2)) + "\nThe Success Rate of Smash: " + str(round(S,2)) + "\nThe Success Rate of Drop Shot: " + str(round(LS,2)) )
-            T10.setFill("gainsboro")
+            if HS > 1 or S > 1 or LS > 1:
+                T10.setText("Invalid Input - Success Rate Cannot Be Larger Than 1.0")
+                T10.setFill("gainsboro")
+                break
+            if HS <= 1 or S <= 1 or LS <= 1:
+                T10.setText("The Success Rate of High Serve: " + str(round(HS, 2)) + "\nThe Success Rate of Smash: " + str(round(S,2)) + "\nThe Success Rate of Drop Shot: " + str(round(LS,2)) )
+                T10.setFill("gainsboro")
         if B2.isClicked(m):
-
-
-        
-
-
-            win2 = GraphWin("Graph vs. " + name, 550, 550)
+            #Second Window Design
+            win2 = GraphWin("Graph vs. " + name.capitalize(), 550, 550)
             win2.setBackground("grey14")
             
 
@@ -294,9 +294,8 @@ def main():
         if Q.isClicked(m):
 
             break
-
     win.close()
-    win2.close()
+
 
 
 
